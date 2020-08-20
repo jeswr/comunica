@@ -193,12 +193,14 @@ export interface IActionQueryOperation extends IAction {
 
 /**
  * Query operation output.
- * @see IActorQueryOperationOutputBindings, IActorQueryOperationOutputQuads, IActorQueryOperationOutputBoolean
+ * @see IActorQueryOperationOutputBindings, IActorQueryOperationOutputQuads, IActorQueryOperationOutputBoolean,
+ * IActorQueryOperationOutputUpdate
  */
 export type IActorQueryOperationOutput =
   IActorQueryOperationOutputStream |
   IActorQueryOperationOutputQuads |
-  IActorQueryOperationOutputBoolean;
+  IActorQueryOperationOutputBoolean |
+  IActorQueryOperationOutputUpdate;
 export interface IActorQueryOperationOutputBase {
   /**
    * The type of output.
@@ -291,6 +293,23 @@ export interface IActorQueryOperationOutputBoolean extends IActorQueryOperationO
    */
   booleanResult: Promise<boolean>;
 
+}
+
+export interface IActorQueryOperationOutputUpdate extends IActorQueryOperationOutputBase {
+  /**
+   * The type of output.
+   */
+  type: 'update';
+  /**
+   * The stream of quads that were inserted.
+   * Undefined if the operation did not have to insert anything.
+   */
+  quadStreamInserted?: RDF.Stream & AsyncIterator<RDF.Quad>;
+  /**
+   * The stream of quads that were deleted.
+   * Undefined if the operation did not have to delete anything.
+   */
+  quadStreamDeleted?: RDF.Stream & AsyncIterator<RDF.Quad>;
 }
 
 /**
