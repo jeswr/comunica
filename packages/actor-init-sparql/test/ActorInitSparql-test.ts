@@ -622,11 +622,23 @@ describe('ActorInitSparql', () => {
       });
     });
 
-    it('should correctly convert skolemized blank nodes in SPARQL queries', () => {
-      return expect(actor.query(`
-      SELECT ?label WHERE {
-        <urn:comunica_skolem:source_0:nodeID://b12796> <http://www.w3.org/2000/01/rdf-schema#label> ?label.
-      }`)).resolves.toBeTruthy();
+    describe('blank node query', () => {
+      it('should correctly convert skolemized blank nodes in SPARQL queries', () => {
+        return expect(actor.query(`
+          SELECT ?label WHERE {
+            <urn:comunica_skolem:source_0:nodeID://b12796> <http://www.w3.org/2000/01/rdf-schema#label> ?label.
+          }`)).resolves.toBeTruthy();
+      });
+
+      it('handles virtuoso blank nodes correctly', async() => {
+        const ctx = { sources: []};
+        const result = await actor.query(`
+        SELECT ?label WHERE {
+          <urn:comunica_skolem:source_0:nodeID://b12796> <http://www.w3.org/2000/01/rdf-schema#label> ?label.
+        }`, ctx);
+        const array = await (<IQueryResultBindings> result).bindings();
+        expect(array).toEqual([{ a: 'triple' }]);
+      });
     });
 
     it('bindings() should collect all bindings until "end" event occurs on triples', async() => {

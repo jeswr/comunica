@@ -118,13 +118,6 @@ describe('FederatedQuadSource', () => {
       expect((<BlankNodeScoped> FederatedQuadSource.skolemizeTerm(DF.blankNode('abc'), '0')).skolemized)
         .toEqualRdfTerm(DF.namedNode('urn:comunica_skolem:source_0:abc'));
     });
-
-    it('should change a blank node of form nodeID://b12796', () => {
-      expect(FederatedQuadSource.skolemizeTerm(DF.blankNode('nodeID://b12796'), '0'))
-        .toEqualRdfTerm(DF.blankNode('urn:comunica_skolem:source_0:b12796'));
-      expect((<BlankNodeScoped> FederatedQuadSource.skolemizeTerm(DF.blankNode('nodeID://b12796'), '0')).skolemized)
-        .toEqualRdfTerm(DF.namedNode('urn:comunica_skolem:source_0:b12796'));
-    });
   });
 
   describe('#skolemizeQuad', () => {
@@ -144,6 +137,17 @@ describe('FederatedQuadSource', () => {
           DF.blankNode('urn:comunica_skolem:source_0:p'),
           DF.blankNode('urn:comunica_skolem:source_0:o'),
           DF.blankNode('urn:comunica_skolem:source_0:g'),
+        ));
+    });
+
+    it('should work with virtuoso style blank nodes', () => {
+      expect(FederatedQuadSource.skolemizeQuad(
+        DF.quad(DF.blankNode('nodeID://b12345'), DF.namedNode('http://example.org/pred'), DF.variable('o')), '0',
+      ))
+        .toEqualRdfQuad(DF.quad(
+          DF.blankNode('nodeID://b12345'),
+          DF.namedNode('http://example.org/pred'),
+          DF.variable('o'),
         ));
     });
   });
@@ -195,6 +199,11 @@ describe('FederatedQuadSource', () => {
       expect(FederatedQuadSource.deskolemizeTerm(new BlankNodeScoped('abc',
         DF.namedNode('urn:comunica_skolem:source_0:abc')), '1'))
         .toBeFalsy();
+    });
+
+    it('Virtuoso blank note format with nodeID:// to work', () => {
+      expect(FederatedQuadSource.deskolemizeTerm(DF.blankNode('nodeID://b12796'), '0'))
+        .toEqual(DF.blankNode('nodeID://b12796'));
     });
   });
 

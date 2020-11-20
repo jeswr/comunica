@@ -240,6 +240,22 @@ describe('ActorQueryOperationQuadpattern', () => {
       });
     });
 
+    it('should run <nodeID://b123> <http://example.org/predicate> ?o', () => {
+      const operation = {
+        graph: DF.namedNode('g'),
+        object: DF.variable('o'),
+        predicate: DF.namedNode('http://example.org/predicate'),
+        subject: DF.blankNode('nodeID://b123'),
+        type: 'pattern',
+      };
+      const context = ActionContext({});
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
+        expect(output.variables).toEqual([ '?o' ]);
+        expect(await (<any> output).metadata()).toBe(metadataContent);
+        expect(output.canContainUndefs).toEqual(false);
+      });
+    });
+
     it('should run s ?v ?v g with shared variables', () => {
       const operation = {
         graph: DF.namedNode('g'),
