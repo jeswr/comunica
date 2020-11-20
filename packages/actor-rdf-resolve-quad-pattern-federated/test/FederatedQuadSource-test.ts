@@ -118,6 +118,13 @@ describe('FederatedQuadSource', () => {
       expect((<BlankNodeScoped> FederatedQuadSource.skolemizeTerm(DF.blankNode('abc'), '0')).skolemized)
         .toEqualRdfTerm(DF.namedNode('urn:comunica_skolem:source_0:abc'));
     });
+
+    it('should change a blank node of form nodeID://b12796', () => {
+      expect(FederatedQuadSource.skolemizeTerm(DF.blankNode('nodeID://b12796'), '0'))
+        .toEqualRdfTerm(DF.blankNode('urn:comunica_skolem:source_0:b12796'));
+      expect((<BlankNodeScoped> FederatedQuadSource.skolemizeTerm(DF.blankNode('nodeID://b12796'), '0')).skolemized)
+        .toEqualRdfTerm(DF.namedNode('urn:comunica_skolem:source_0:b12796'));
+    });
   });
 
   describe('#skolemizeQuad', () => {

@@ -622,6 +622,13 @@ describe('ActorInitSparql', () => {
       });
     });
 
+    it('should correctly convert skolemized blank nodes in SPARQL queries', () => {
+      return expect(actor.query(`
+      SELECT ?label WHERE {
+        <urn:comunica_skolem:source_0:nodeID://b12796> <http://www.w3.org/2000/01/rdf-schema#label> ?label.
+      }`)).resolves.toBeTruthy();
+    });
+
     it('bindings() should collect all bindings until "end" event occurs on triples', async() => {
       const ctx = { sources: []};
       const result = await actor.query('SELECT * WHERE { ?s ?p ?o }', ctx);

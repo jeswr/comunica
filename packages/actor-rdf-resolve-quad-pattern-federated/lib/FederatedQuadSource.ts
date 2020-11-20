@@ -85,9 +85,10 @@ export class FederatedQuadSource implements IQuadSource {
    * @return If the given term was a blank node, this will return a skolemized named node, otherwise the original term.
    */
   public static skolemizeTerm(term: RDF.Term, sourceId: string): RDF.Term | BlankNodeScoped {
+    const value = /[\da-z]+$/ui.exec(term.value)?.[0];
     if (term.termType === 'BlankNode') {
-      return new BlankNodeScoped(`bc_${sourceId}_${term.value}`,
-        DF.namedNode(`${FederatedQuadSource.SKOLEM_PREFIX}${sourceId}:${term.value}`));
+      return new BlankNodeScoped(`bc_${sourceId}_${value}`,
+        DF.namedNode(`${FederatedQuadSource.SKOLEM_PREFIX}${sourceId}:${value}`));
     }
     return term;
   }
