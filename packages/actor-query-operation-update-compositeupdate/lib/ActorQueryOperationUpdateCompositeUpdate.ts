@@ -1,9 +1,12 @@
-import { ActorQueryOperationTypedMediated, IActorQueryOperationOutput,
+import type { IActorQueryOperationOutput,
   IActorQueryOperationOutputUpdate,
-  IActorQueryOperationTypedMediatedArgs } from '@comunica/bus-query-operation';
-import { ActionContext, IActorTest } from '@comunica/core';
-import { Algebra } from 'sparqlalgebrajs';
-import * as RDF from 'rdf-js';
+  IActorQueryOperationTypedMediatedArgs,
+  QuadStream } from '@comunica/bus-query-operation';
+import {
+  ActorQueryOperation, ActorQueryOperationTypedMediated,
+} from '@comunica/bus-query-operation';
+import type { ActionContext, IActorTest } from '@comunica/core';
+import type { Algebra } from 'sparqlalgebrajs';
 
 /**
  * A comunica Update CompositeUpdate Query Operation Actor.
@@ -21,11 +24,13 @@ export class ActorQueryOperationUpdateCompositeUpdate
   public async runOperation(pattern: Algebra.CompositeUpdate, context: ActionContext):
   Promise<IActorQueryOperationOutput> {
     // TODO: create transaction
-    const updateResults: IActorQueryOperationOutputUpdate[] = await Promise.all(pattern.updates
+    const updateResults: IActorQueryOperationOutput[] = await Promise.all(pattern.updates
       .map(operation => this.mediatorQueryOperation.mediate({ operation, context })));
-    
-    const quadStreamInserted: AsyncIterator<RDF.Quad> | undefined = updateResults.map(update => update.)
-    
+
+    const updateResultsSafe: IActorQueryOperationOutputUpdate[] = updateResults.map(ActorQueryOperation.getSafeUpdate);
+
+    const quadStreamInserted: QuadStream[] = updateResultsSafe.flatMap(update => update.quadStreamInserted);
+
     return {
       type: 'update',
       quadStreamInserted, // TODO: join input streams
