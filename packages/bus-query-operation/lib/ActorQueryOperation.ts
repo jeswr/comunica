@@ -1,10 +1,10 @@
 import type { ActionContext, IAction, IActorArgs, IActorTest, Mediator } from '@comunica/core';
 import { Actor } from '@comunica/core';
-import type { AsyncIterator } from 'asynciterator';
 import type * as RDF from 'rdf-js';
 import type { Algebra } from 'sparqlalgebrajs';
 import type { Bindings, BindingsStream } from './Bindings';
 import { materializeOperation } from './Bindings';
+import type { QuadStream } from './Quads';
 
 /**
  * @type {string} Context entry for current metadata.
@@ -276,7 +276,7 @@ export interface IActorQueryOperationOutputQuads extends IActorQueryOperationOut
   /**
    * The stream of quads.
    */
-  quadStream: RDF.Stream & AsyncIterator<RDF.Quad>;
+  quadStream: QuadStream;
 }
 
 /**
@@ -295,6 +295,10 @@ export interface IActorQueryOperationOutputBoolean extends IActorQueryOperationO
 
 }
 
+/**
+ * Query operation output for update quads.
+ * For example: SPARQL UPDATE results
+ */
 export interface IActorQueryOperationOutputUpdate extends IActorQueryOperationOutputBase {
   /**
    * The type of output.
@@ -304,12 +308,12 @@ export interface IActorQueryOperationOutputUpdate extends IActorQueryOperationOu
    * The stream of quads that were inserted.
    * Undefined if the operation did not have to insert anything.
    */
-  quadStreamInserted?: RDF.Stream & AsyncIterator<RDF.Quad>;
+  quadStreamInserted?: QuadStream;
   /**
    * The stream of quads that were deleted.
    * Undefined if the operation did not have to delete anything.
    */
-  quadStreamDeleted?: RDF.Stream & AsyncIterator<RDF.Quad>;
+  quadStreamDeleted?: QuadStream;
 }
 
 /**
