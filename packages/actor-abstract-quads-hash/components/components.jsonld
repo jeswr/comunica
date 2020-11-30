@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-abstract-quads-hash/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-abstract-quads-hash",
+  "@type": "Module",
+  "requireName": "@comunica/actor-abstract-quads-hash",
+  "import": [
+    "files-caaqh:components/Actor/Abstract/QuadsHash.jsonld"
+  ]
+}

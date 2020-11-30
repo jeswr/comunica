@@ -1,0 +1,21 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-abstract-quads-hash/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-abstract/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-abstract-quads-hash",
+  "components": [
+    {
+      "@id": "caaqh:Actor/Abstract/QuadsHash",
+      "@type": "Class",
+      "extends": "cba:Actor/Abstract",
+      "requireElement": "ActorAbstractQuadsHash",
+      "comment": "A comunica Quads Hash Abstract Actor.",
+      "constructorArguments": [
+        {
+          "extends": "cba:Actor/Abstract/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}

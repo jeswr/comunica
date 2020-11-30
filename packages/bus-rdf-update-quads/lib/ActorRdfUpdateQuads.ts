@@ -17,6 +17,14 @@ export abstract class ActorRdfUpdateQuads extends Actor<IActionRdfUpdateQuads, I
   public constructor(args: IActorArgs<IActionRdfUpdateQuads, IActorTest, IActorRdfUpdateQuadsOutput>) {
     super(args);
   }
+  /**
+   * 
+   */
+  test
+  /**
+   * 
+   */
+
 }
 
 export interface IActionRdfUpdateQuads extends IAction {
