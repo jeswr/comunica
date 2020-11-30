@@ -46,5 +46,8 @@
   "scripts": {
     "build": "node \"../../node_modules/typescript/bin/tsc\"",
     "validate": "npm ls"
+  },
+  "dependencies": {
+    "asynciterator": "^3.0.3"
   }
 }
