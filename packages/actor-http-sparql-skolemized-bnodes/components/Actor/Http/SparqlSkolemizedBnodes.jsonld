@@ -1,0 +1,21 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-http-sparql-skolemized-bnodes/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-http/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-http-sparql-skolemized-bnodes",
+  "components": [
+    {
+      "@id": "cahssb:Actor/Http/SparqlSkolemizedBnodes",
+      "@type": "Class",
+      "extends": "cbh:Actor/Http",
+      "requireElement": "ActorHttpSparqlSkolemizedBnodes",
+      "comment": "An actor that handles HTTP responses for vendors (e.g. Virtuoso) that Skolemize Blank Nodes",
+      "constructorArguments": [
+        {
+          "extends": "cbh:Actor/Http/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}

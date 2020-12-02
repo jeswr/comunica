@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-http-sparql-skolemized-bnodes/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-http-sparql-skolemized-bnodes",
+  "@type": "Module",
+  "requireName": "@comunica/actor-http-sparql-skolemized-bnodes",
+  "import": [
+    "files-cahssb:components/Actor/Http/SparqlSkolemizedBnodes.jsonld"
+  ]
+}
