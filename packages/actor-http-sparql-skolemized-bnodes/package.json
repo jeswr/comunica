@@ -67,8 +67,5 @@
     "test-watch": "node \"../../node_modules/jest/bin/jest.js\" ${1} --watch",
     "build": "node \"../../node_modules/typescript/bin/tsc\"",
     "validate": "npm ls"
-  },
-  "dependencies": {
-    "immutable": "^4.0.0-rc.12"
   }
 }

@@ -53,7 +53,7 @@ export class RdfSourceSparql implements IQuadSource {
     new Promise(resolve => {
       const bindingsStream: BindingsStream = this.queryBindings(this.url, countQuery, this.context);
       bindingsStream.on('data', (bindings: Bindings) => {
-        const count: RDF.Term = bindings.get('?count');
+        const count: RDF.Term = bindings.get('?');
         if (count) {
           const totalItems: number = Number.parseInt(count.value, 10);
           if (Number.isNaN(totalItems)) {
