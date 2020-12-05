@@ -10,7 +10,7 @@ import { quadToStringQuad } from 'rdf-string';
 
 
 
-export class ActorRdfCombineQuadsHash extends ActorRdfCombineQuads {
+export class ActorRdfCombineQuadsHashSingle extends ActorRdfCombineQuads {
   public constructor(args: IActorArgs<IActionRdfCombineQuads, IActorTest, IActorRdfCombineQuadsOutput>) {
     super(args);
   }
@@ -43,7 +43,8 @@ export class ActorRdfCombineQuadsHash extends ActorRdfCombineQuads {
    * @param hasBase Whether there is a base quad stream
    */
   public async getIterations(inserts: number, deletes: number, hasBase?: boolean): Promise<number> {
-    return (2 * inserts) + deletes - (hasBase ? 1 : 0);
+    // Odgy
+    return inserts + deletes + (hasBase ? 1 : 0);
   }
 
   /**
@@ -51,30 +52,91 @@ export class ActorRdfCombineQuadsHash extends ActorRdfCombineQuads {
    * @param action
    */
   public async getOutput(quads: QuadStream, updates: IQuadStreamUpdate[]): Promise<IActorRdfCombineQuadsOutput> {
-    let quadStreamInserted = new AsyncIterator<RDF.Quad>();
-    const add: Record<string, boolean> | null = {};
-    const hashes: Record<string, boolean> = {};
-    // let quad: RDF.Quad | null = null;
-    // First we create a hash map of deletions
-    for (const update of updates.reverse()) {
+    const deletions: (Record<string, boolean> | undefined)[] = [];
+    const added: Record<string, boolean> = {};
+    // @ts-ignore
+    let quadStreamDeleted: QuadStream = new AsyncIterator<RDF.Quad>();
+    // @ts-ignore
+    let quadStreamInserted: QuadStream = new AsyncIterator<RDF.Quad>();
+
+    for (const update of updates) {
       if (update.type === 'delete') {
+        const hashes: Record<string, boolean> = {};
         update.quadStream.forEach(quad => {
-          hashes[ActorRdfCombineQuadsHash.hash(quad)] = true;
+          hashes[ActorRdfCombineQuadsHashSingle.hash(quad)] = true;
         });
       } else {
-        update.quadStream.forEach(quad => {
-          const hash = ActorRdfCombineQuadsHash.hash(quad);
-          if (!(hash in add) &&  !(hash in hashes)) {
-            add[hash] = true;
-            quadStreamInserted.append([ quad ]);
-          }
-        })
+        deletions.push(undefined);
       }
     }
-    
+    // @ts-ignore
+    quads = quads.filter(quad => {
+      if (deletions.every(hashes => !hashes?.[ActorRdfCombineQuadsHashSingle.hash(quad)])) {
+        // @ts-ignore
+        quadStreamDeleted = quadStreamDeleted.append([quad]);
+        return false;
+      } else {
+        return true;
+      };
+    })
+
+    for (const update of updates) {
+      deletions.splice(0, 1);
+      if (update.type === 'insert') {
+        // @ts-ignore
+        quadStreamInserted = quadStreamInserted.append(update.quadStream.filter(quad => {
+          const hash = ActorRdfCombineQuadsHashSingle.hash(quad);
+          if (!(hash in added) && deletions.every(hashes => !hashes?.[hash])) {
+            added[hash] = true;
+            return true;
+          }
+          return false;
+        }))
+      }
+    }
+    // @ts-ignore
+    quads = quads.append(quadStreamInserted);
+
+    return {
+      quads,
+      quadStreamDeleted,
+      quadStreamInserted
+    }
+
+
+
+
+
+    // let quadStreamInserted = new AsyncIterator<RDF.Quad>();
+    // const add: Record<string, boolean> | null = {};
+    // const hashes: Record<string, boolean> = {};
+    // // let quad: RDF.Quad | null = null;
+    // // First we create a hash map of deletions
+    // for (const update of updates.reverse()) {
+    //   if (update.type === 'delete') {
+    //     update.quadStream.forEach(quad => {
+    //       hashes[ActorRdfCombineQuadsHash.hash(quad)] = true;
+    //     });
+    //   } else {
+    //     update.quadStream.forEach(quad => {
+    //       const hash = ActorRdfCombineQuadsHash.hash(quad);
+    //       if (!(hash in add) && !(hash in hashes)) {
+    //         add[hash] = true;
+    //         quadStreamInserted.append([quad]);
+    //       }
+    //     })
+    //   }
+    // }
+
+    // // A good algorithm when we dont need to record inserted and deleted
+    // let quadStreamInserted = new AsyncIterator<RDF.Quad>();
+    // const hashes: Record<string, boolean> = {};
+    // // let quad: RDF.Quad | null = null;
+    // // First we create a hash map of deletions
+
     // quadStreamInserted.append()
-    
-    
+
+
     // for (const update of updates.reverse()) {
     //   if (update.type === 'delete') {
     //     update.quadStream.forEach(quad => {
@@ -104,8 +166,8 @@ export class ActorRdfCombineQuadsHash extends ActorRdfCombineQuads {
     //     .forEach(quad => {
 
     //     })
-        
-        
+
+
     //     // eslint-disable-next-line no-cond-assign
     //     while ((quad = update.quadStream.read()) !== null) {
     //       const hash = ActorRdfCombineQuadsHash.hash(quad);
@@ -122,30 +184,27 @@ export class ActorRdfCombineQuadsHash extends ActorRdfCombineQuads {
     // }
 
 
-    const quadStreamDeleted = new AsyncIterator<RDF.Quad>();
-    // Note that here are assuming there are no duplicate quads in the
-    // quads stream
-    // @ts-ignore
-    quads = quads.filter((quad: RDF.Quad) => {
-      const hash = ActorRdfCombineQuadsHash.hash(quad);
-      if (hash in hashes) {
-        quadStreamDeleted.append([ quad ]);
-        return false;
-      }
-      hashes[hash] = true;
-      return true;
-    });
+    // // const quadStreamDeleted = new AsyncIterator<RDF.Quad>();
+    // // Note that here are assuming there are no duplicate quads in the
+    // // quads stream
+    // quads = quads.filter((quad: RDF.Quad) => {
+    //   const hash = ActorRdfCombineQuadsHash.hash(quad);
+    //   if (hash in hashes) {
+    //     quadStreamDeleted.append([quad]);
+    //     return false;
+    //   }
+    //   hashes[hash] = true;
+    //   return true;
+    // });
 
-    quadStreamInserted = quadStreamInserted.filter(quad => !(ActorRdfCombineQuadsHash.hash(quad) in hashes));
-    quads.append(quadStreamInserted);
+    // quadStreamInserted = quadStreamInserted.filter(quad => !(ActorRdfCombineQuadsHash.hash(quad) in hashes));
+    // quads.append(quadStreamInserted);
 
-    return {
-      // @ts-ignore
-      quadStreamInserted,
-      // @ts-ignore
-      quadStreamDeleted,
-      quads,
-    };
+    // return {
+    //   quadStreamInserted,
+    //   quadStreamDeleted,
+    //   quads,
+    // };
 
     // TODO: RECOVER OTHER ALG BELOW
 

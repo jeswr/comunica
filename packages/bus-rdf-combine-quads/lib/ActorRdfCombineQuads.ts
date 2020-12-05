@@ -5,11 +5,14 @@ import type { IMediatorTypeIterations } from '@comunica/mediatortype-iterations'
 import { AsyncIterator } from 'asynciterator';
 import type * as RDF from 'rdf-js';
 
+// TODO: Determine if in general the first insert stream should be made
+// the base (currently doing this in simplify need to confirm)
+
 /**
  * A quad stream and annotation of whether it is to be
  * used to insert or delete Quads
  */
-interface IQuadStreamUpdate {
+export interface IQuadStreamUpdate {
   /**
    * Whether the quads are to be inserted into
    * or deleted from the main stream
@@ -68,6 +71,51 @@ export abstract class ActorRdfCombineQuads
   protected limitDeletesMax = Infinity;
 
   /**
+   * If there is no 'base stream' to compare to, we can search remove all 'delete'
+   * streams before the first update stream.
+   */
+  private simplify(action: IActionRdfCombineQuads): IActionRdfCombineQuads {
+    if (action.quads) {
+      return action;
+    } else {
+      let count = 0;
+      for (const quads of action.quadStreamUpdates) {
+        if (quads.type === 'delete') {
+          count++;
+        } else {
+          return {
+            trackChanges: action.trackChanges,
+            maintainOrder: action.maintainOrder,
+            avoidDuplicates: action.avoidDuplicates,
+            quads: quads.quadStream,
+            // TODO: See if we need to specify the end element
+            quadStreamUpdates: action.quadStreamUpdates.slice(count + 1)
+          }
+        }
+      }
+      // This means that there are no insert operations whatsoever
+      return {
+        trackChanges: action.trackChanges,
+        maintainOrder: action.maintainOrder,
+        avoidDuplicates: action.avoidDuplicates,
+        quadStreamUpdates: []
+      }
+      
+      
+      
+      // if (count == 0) {
+      //   return action;
+      // } else {
+      //   return {
+      //     ...action,
+      //     // TODO: See if we need to specify the end element
+      //     quadStreamUpdates: action.quadStreamUpdates.slice(count)
+      //   }
+      // }
+    }
+  };
+
+  /**
    * Counts the number of streams that insert quads and the number of streams that delete
    * quads. Note that base stream is counted as an *insertion* stream.
    */
@@ -91,14 +139,17 @@ export abstract class ActorRdfCombineQuads
    * @returns {Promise<IActorRdfCombineQuadsOutput>}
    */
   public async run(action: IActionRdfCombineQuads): Promise<IActorRdfCombineQuadsOutput> {
+    action = this.simplify(action);
     const { inserts, deletes } = this.counters(action);
     if (inserts === 0) {
+      // @ts-ignore
       return { quads: new AsyncIterator<RDF.Quad>() };
     }
     if (deletes === 0 && inserts === 1) {
       if (action.quads) {
         return { quads: action.quads };
       }
+      // @ts-ignore
       const quads: QuadStream = action.quadStreamUpdates.find(stream => stream.type === 'insert')?.quadStream ??
       new AsyncIterator<RDF.Quad>();
       // This ^^ is not strictly necessary since inserts === 1 - just here for type safety.
@@ -107,6 +158,7 @@ export abstract class ActorRdfCombineQuads
         quadStreamInserted: quads,
       };
     }
+    // @ts-ignore
     return this.getOutput(action.quads ?? new AsyncIterator<RDF.Quad>(), action.quadStreamUpdates);
   }
 
@@ -117,7 +169,8 @@ export abstract class ActorRdfCombineQuads
   Promise<IActorRdfCombineQuadsOutput>;
 
   /**
-   *
+   * Returns the number of 'combine' operations required to complete
+   * the operation
    * @param inserts The number of streams to be inserted
    * @param deletes The number of streams use for deletion
    * @param hasBase True if there is a base stream to compare to
@@ -128,6 +181,7 @@ export abstract class ActorRdfCombineQuads
    * Default test function for combine actors.
    */
   public async test(action: IActionRdfCombineQuads): Promise<IMediatorTypeIterations> {
+    action = this.simplify(action);
     const { inserts, deletes } = this.counters(action);
     /**
      * If there are no insertions we can just return an empty
@@ -194,6 +248,9 @@ export interface IActionRdfCombineQuads extends IAction {
   quadStreamUpdates: IQuadStreamUpdate[];
 }
 
+// TODO: Make it so that the output quad stream is empty if there are
+// no updates
+// Should this name be Iaction?
 export interface IActorRdfCombineQuadsOutput extends IActorOutput {
   /**
    * The resultant quad stream of the combine operation

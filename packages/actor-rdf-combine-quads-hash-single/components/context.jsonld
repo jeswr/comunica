@@ -3,10 +3,10 @@
     "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld",
     {
       "npmd": "https://linkedsoftwaredependencies.org/bundles/npm/",
-      "caaqh": "npmd:@comunica/actor-abstract-quads-hash/",
-      "files-caaqh": "caaqh:^1.0.0/",
+      "carcqhs": "npmd:@comunica/actor-rdf-combine-quads-hash-single/",
+      "files-carcqhs": "carcqhs:^1.0.0/",
 
-      "ActorAbstractQuadsHash": "caaqh:Actor/Abstract/QuadsHash"
+      "ActorRdfCombineQuadsHashSingle": "carcqhs:Actor/RdfCombineQuads/HashSingle"
     }
   ]
 }

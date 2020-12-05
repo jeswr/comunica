@@ -36,6 +36,8 @@ export abstract class ActorRdfResolveQuadPatternSource extends ActorRdfResolveQu
    * @return {Promise<IActorRdfResolveQuadPatternOutput>} A promise that resolves to a hash containing
    *                                                      a data RDFJS stream.
    */
+  // @ts-ignore Namespace '"/home/jesse/gh/comunica-v3/comunica/node_modules/rdf-js/index"' has no exported member 'BaseQuad'.
+  // TODO: Resolve.
   protected async getOutput(source: IQuadSource, pattern: RDF.BaseQuad, context?: ActionContext):
   Promise<IActorRdfResolveQuadPatternOutput> {
     // Create data stream

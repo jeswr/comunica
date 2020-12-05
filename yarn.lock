@@ -3962,6 +3962,11 @@ canonicalize@^1.0.1:
   resolved "https://registry.yarnpkg.com/canonicalize/-/canonicalize-1.0.3.tgz#7c65d89eaf4f8f78a589e3ae23eabb1ce941c563"
   integrity sha512-QWAGweNicWIXzcl7skvUZQ/ArdecS8fOeudnjIU0LYqSdTOSBSap+0VPMas4u11cW3a9sN5AN/aJHQUGfdWLCw==
 
+canonicalize@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/canonicalize/-/canonicalize-1.0.5.tgz#b43b390ce981d397908bb847c3a8d9614323a47b"
+  integrity sha512-mAjKJPIyP0xqqv6IAkvso07StOmz6cmGtNDg3pXCSzXVZOqka7StIkAhJl/zHOi4M2CgpYfD6aeRWbnrmtvBEA==
+
 capture-exit@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/capture-exit/-/capture-exit-2.0.0.tgz#fb953bfaebeb781f62898239dabb426d08a509a4"
@@ -10303,6 +10308,11 @@ rdf-isomorphic@^1.2.0:
   dependencies:
     rdf-string "^1.5.0"
     rdf-terms "^1.6.2"
+
+rdf-js@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/rdf-js/-/rdf-js-1.0.2.tgz#68bcc06379a446fc2997176676b79638783d6907"
+  integrity sha512-xnR7jV0oVViKJTDE1RIOHs+b4gGPbhwV/D8SciN8Ib8Li5bqtXxRsQSYs6NfDsPN7SULTh6eh5AQ7kLXo7qQoA==
 
 rdf-literal@^1.2.0:
   version "1.2.0"

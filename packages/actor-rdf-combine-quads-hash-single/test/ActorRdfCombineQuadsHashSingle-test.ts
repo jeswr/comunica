@@ -1,19 +1,19 @@
-import { ActorAbstract } from '@comunica/bus-abstract';
+import { ActorRdfCombineQuads } from '@comunica/bus-rdf-combine-quads';
 import { Bus } from '@comunica/core';
-import { ActorAbstractQuadsHash } from '../lib/ActorAbstractQuadsHash';
+import { ActorRdfCombineQuadsHashSingle } from '../lib/ActorRdfCombineQuadsHashSingle';
 
-describe('ActorAbstractQuadsHash', () => {
+describe('ActorRdfCombineQuadsHashSingle', () => {
   let bus: any;
 
   beforeEach(() => {
     bus = new Bus({ name: 'bus' });
   });
 
-  describe('An ActorAbstractQuadsHash instance', () => {
-    let actor: ActorAbstractQuadsHash;
+  describe('An ActorRdfCombineQuadsHashSingle instance', () => {
+    let actor: ActorRdfCombineQuadsHashSingle;
 
     beforeEach(() => {
-      actor = new ActorAbstractQuadsHash({ name: 'actor', bus });
+      actor = new ActorRdfCombineQuadsHashSingle({ name: 'actor', bus });
     });
 
     it('should test', () => {

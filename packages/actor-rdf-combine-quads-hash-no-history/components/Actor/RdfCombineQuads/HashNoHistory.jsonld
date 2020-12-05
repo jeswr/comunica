@@ -1,0 +1,21 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-combine-quads-hash-no-history/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-combine-quads/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-combine-quads-hash-no-history",
+  "components": [
+    {
+      "@id": "carcqhnh:Actor/RdfCombineQuads/HashNoHistory",
+      "@type": "Class",
+      "extends": "cbrcq:Actor/RdfCombineQuads",
+      "requireElement": "ActorRdfCombineQuadsHashNoHistory",
+      "comment": "A comunica Combine quads using hashes, don&#39;t maintain history RDF Combine Quads Actor.",
+      "constructorArguments": [
+        {
+          "extends": "cbrcq:Actor/RdfCombineQuads/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}

@@ -105,3 +105,5 @@ export interface IMediatorArgs<A extends Actor<I, T, O>,
   name: string;
   bus: Bus<A, I, T, O>;
 }
+
+export type MediatedActor<I, T, O> = Mediator<Actor<I, T, O>, I, T, O>;

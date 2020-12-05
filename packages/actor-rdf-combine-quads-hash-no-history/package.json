@@ -1,21 +1,21 @@
 {
-  "name": "@comunica/actor-abstract-quads-hash",
+  "name": "@comunica/actor-rdf-combine-quads-hash-no-history",
   "version": "1.0.0",
-  "description": "A quads-hash abstract actor",
-  "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-abstract-quads-hash",
+  "description": "A hash-no-history rdf-combine-quads actor",
+  "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-combine-quads-hash-no-history",
   "lsd:components": "components/components.jsonld",
   "lsd:contexts": {
-    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-abstract-quads-hash/^1.0.0/components/context.jsonld": "components/context.jsonld"
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-combine-quads-hash-no-history/^1.0.0/components/context.jsonld": "components/context.jsonld"
   },
   "lsd:importPaths": {
-    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-abstract-quads-hash/^1.0.0/components/": "components/"
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-combine-quads-hash-no-history/^1.0.0/components/": "components/"
   },
   "main": "index.js",
   "typings": "index",
   "repository": {
     "type": "git",
     "url": "https://github.com/comunica/comunica.git",
-    "directory": "packages/actor-abstract-quads-hash"
+    "directory": "packages/actor-rdf-combine-quads-hash-no-history"
   },
   "publishConfig": {
     "access": "public"
@@ -23,8 +23,8 @@
   "keywords": [
     "comunica",
     "actor",
-    "abstract",
-    "quads-hash"
+    "rdf-combine-quads",
+    "hash-no-history"
   ],
   "license": "MIT",
   "bugs": {
@@ -39,12 +39,12 @@
     "index.js"
   ],
   "peerDependencies": {
-    "@comunica/core": "^1.15.0",
-    "@comunica/bus-abstract": "^1.15.0"
+    "@comunica/core": "^1.18.0",
+    "@comunica/bus-rdf-combine-quads": "^1.18.0"
   },
   "devDependencies": {
-    "@comunica/core": "^1.15.0",
-    "@comunica/bus-abstract": "^1.15.0"
+    "@comunica/core": "^1.18.0",
+    "@comunica/bus-rdf-combine-quads": "^1.18.0"
   },
   "jest": {
     "globals": {
