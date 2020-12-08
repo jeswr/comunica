@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-combine-quads-hash/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-rdf-combine-quads-hash",
+  "@type": "Module",
+  "requireName": "@comunica/actor-rdf-combine-quads-hash",
+  "import": [
+    "files-carcqh:components/Actor/RdfCombineQuads/Hash.jsonld"
+  ]
+}

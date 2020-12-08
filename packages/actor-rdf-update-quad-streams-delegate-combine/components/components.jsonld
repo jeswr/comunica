@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-update-quad-streams-delegate-combine/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-rdf-update-quad-streams-delegate-combine",
+  "@type": "Module",
+  "requireName": "@comunica/actor-rdf-update-quad-streams-delegate-combine",
+  "import": [
+    "files-caruqsdc:components/Actor/RdfUpdateQuadStreams/DelegateCombine.jsonld"
+  ]
+}

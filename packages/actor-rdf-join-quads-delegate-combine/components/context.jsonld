@@ -1,0 +1,12 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld",
+    {
+      "npmd": "https://linkedsoftwaredependencies.org/bundles/npm/",
+      "carjqdc": "npmd:@comunica/actor-rdf-join-quads-delegate-combine/",
+      "files-carjqdc": "carjqdc:^1.0.0/",
+
+      "ActorRdfJoinQuadsDelegateCombine": "carjqdc:Actor/RdfJoinQuads/DelegateCombine"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld",
+    {
+      "npmd": "https://linkedsoftwaredependencies.org/bundles/npm/",
+      "caruqsdc": "npmd:@comunica/actor-rdf-update-quad-streams-delegate-combine/",
+      "files-caruqsdc": "caruqsdc:^1.0.0/",
+
+      "ActorRdfUpdateQuadStreamsDelegateCombine": "caruqsdc:Actor/RdfUpdateQuadStreams/DelegateCombine"
+    }
+  ]
+}

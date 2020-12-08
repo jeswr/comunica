@@ -34,7 +34,7 @@ export class MediatorCombinePipeline<A extends Actor<H, T, H>, H extends IAction
     return handle;
   }
 
-  protected mediateWith(): Promise<A> {
+  protected mediateWithResult(): Promise<IActorReply<A, H, T, H>> {
     throw new Error('Method not supported.');
   }
 }

@@ -1,0 +1,21 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-update-quads-file/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-update-quads/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-update-quads-file",
+  "components": [
+    {
+      "@id": "caruqf:Actor/RdfUpdateQuads/File",
+      "@type": "Class",
+      "extends": "cbruq:Actor/RdfUpdateQuads",
+      "requireElement": "ActorRdfUpdateQuadsFile",
+      "comment": "A comunica File RDF Update Quads Actor.",
+      "constructorArguments": [
+        {
+          "extends": "cbruq:Actor/RdfUpdateQuads/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}

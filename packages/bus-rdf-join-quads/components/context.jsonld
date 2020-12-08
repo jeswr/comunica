@@ -1,0 +1,12 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld",
+    {
+      "cbrjq": "npmd:@comunica/bus-rdf-join-quads/",
+      "files-cbrjq": "cbrjq:^1.0.0/",
+
+      "BusRdfJoinQuads": "cbrjq:Bus/RdfJoinQuads",
+      "ActorRdfJoinQuads": "cbrjq:Actor/RdfJoinQuads"
+    }
+  ]
+}

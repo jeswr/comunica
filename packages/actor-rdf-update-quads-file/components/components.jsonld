@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-update-quads-file/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-rdf-update-quads-file",
+  "@type": "Module",
+  "requireName": "@comunica/actor-rdf-update-quads-file",
+  "import": [
+    "files-caruqf:components/Actor/RdfUpdateQuads/File.jsonld"
+  ]
+}

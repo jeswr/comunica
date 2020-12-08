@@ -10,12 +10,12 @@ export class MediatorRace<A extends Actor<I, T, O>, I extends IAction, T extends
     super(args);
   }
 
-  protected mediateWith(action: I, testResults: IActorReply<A, I, T, O>[]): Promise<A> {
+  protected mediateWithResult(action: I, testResults: IActorReply<A, I, T, O>[]): Promise<IActorReply<A, I, T, O>> {
     return new Promise((resolve, reject) => {
       const errors: Error[] = [];
       for (const testResult of testResults) {
         testResult.reply.then(() => {
-          resolve(testResult.actor);
+          resolve(testResult);
         }).catch(error => {
           // Reject if all replies were rejected
           errors.push(error);

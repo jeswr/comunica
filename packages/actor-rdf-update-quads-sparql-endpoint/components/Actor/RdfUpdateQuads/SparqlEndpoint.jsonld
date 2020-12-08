@@ -1,0 +1,21 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-update-quads-sparql-endpoint/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-update-quads/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-update-quads-sparql-endpoint",
+  "components": [
+    {
+      "@id": "caruqse:Actor/RdfUpdateQuads/SparqlEndpoint",
+      "@type": "Class",
+      "extends": "cbruq:Actor/RdfUpdateQuads",
+      "requireElement": "ActorRdfUpdateQuadsSparqlEndpoint",
+      "comment": "A comunica Sparql Endpoint RDF Update Quads Actor.",
+      "constructorArguments": [
+        {
+          "extends": "cbruq:Actor/RdfUpdateQuads/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}

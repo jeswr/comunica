@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-combine-quads-hash-single-no-history/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-rdf-combine-quads-hash-single-no-history",
+  "@type": "Module",
+  "requireName": "@comunica/actor-rdf-combine-quads-hash-single-no-history",
+  "import": [
+    "files-carcqhsnh:components/Actor/RdfCombineQuads/HashSingleNoHistory.jsonld"
+  ]
+}

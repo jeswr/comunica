@@ -52,7 +52,7 @@ export class MediatorNumber<A extends Actor<I, T, O>, I extends IAction, T exten
     return value === undefined ? defaultValue : value;
   }
 
-  protected async mediateWith(action: I, testResults: IActorReply<A, I, T, O>[]): Promise<A> {
+  protected async mediateWithResult(action: I, testResults: IActorReply<A, I, T, O>[]): Promise<IActorReply<A, I, T, O>> {
     let promises = testResults.map(({ reply }) => reply);
     const errors: Error[] = [];
     if (this.ignoreErrors) {
@@ -69,7 +69,7 @@ export class MediatorNumber<A extends Actor<I, T, O>, I extends IAction, T exten
       throw new Error(`All actors rejected their test in ${this.name}\n${
         errors.map(error => error.message).join('\n')}`);
     }
-    return testResults[index].actor;
+    return testResults[index];
   }
 }
 

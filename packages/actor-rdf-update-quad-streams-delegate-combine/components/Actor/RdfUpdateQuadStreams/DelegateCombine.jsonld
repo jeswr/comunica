@@ -1,0 +1,21 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-update-quad-streams-delegate-combine/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-update-quad-streams/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-update-quad-streams-delegate-combine",
+  "components": [
+    {
+      "@id": "caruqsdc:Actor/RdfUpdateQuadStreams/DelegateCombine",
+      "@type": "Class",
+      "extends": "cbruqs:Actor/RdfUpdateQuadStreams",
+      "requireElement": "ActorRdfUpdateQuadStreamsDelegateCombine",
+      "comment": "A comunica Delegate Combine RDF Update Quad Streams Actor.",
+      "constructorArguments": [
+        {
+          "extends": "cbruqs:Actor/RdfUpdateQuadStreams/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}

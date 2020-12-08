@@ -71,6 +71,21 @@ export abstract class Mediator<A extends Actor<I, T, O>,
   }
 
   /**
+   * Mediate for the given action to get an actor.
+   *
+   * This will send the test action on all actors in the bus.
+   * The actor that tests _best_ will be returned.
+   *
+   * @param {I} action The action to mediate for.
+   * @return {Promise<O extends IActorOutput>} A promise that resolves to the _best_ actor
+   * and their test result.
+   */
+  public async mediateResult(action: I): Promise<IActorReply<A, I, T, O>> {
+    // Mediate to one actor and run that actor.
+    return await this.mediateWithResult(action, this.publish(action));
+  }
+
+  /**
    * Mediate for the given action.
    *
    * This will send the test action on all actors in the bus.
@@ -89,6 +104,20 @@ export abstract class Mediator<A extends Actor<I, T, O>,
   /**
    * Mediate for the given action with the given actor test results for the action.
    *
+   * One actor and assocaited test results, must be returned that provided the _best_ test result.
+   * How '_best_' is interpreted, depends on the implementation of the Mediator.
+   *
+   * @param {I} action The action to mediate for.
+   * @param {IActorReply<A extends Actor<I, T, O>, I extends IAction, T extends IActorTest,
+   * O extends IActorOutput>[]} testResults The actor test results for the action.
+   * @return {Promise<A extends Actor<I, T, O>>} A promise that resolves to the _best_ actor.
+   */
+  protected abstract async mediateWithResult(action: I, testResults: IActorReply<A, I, T, O>[]): Promise<IActorReply<A, I, T, O>>;
+
+
+  /**
+   * Mediate for the given action with the given actor test results for the action.
+   *
    * One actor must be returned that provided the _best_ test result.
    * How '_best_' is interpreted, depends on the implementation of the Mediator.
    *
@@ -97,7 +126,9 @@ export abstract class Mediator<A extends Actor<I, T, O>,
    * O extends IActorOutput>[]} testResults The actor test results for the action.
    * @return {Promise<A extends Actor<I, T, O>>} A promise that resolves to the _best_ actor.
    */
-  protected abstract async mediateWith(action: I, testResults: IActorReply<A, I, T, O>[]): Promise<A>;
+  protected async mediateWith(action: I, testResults: IActorReply<A, I, T, O>[]): Promise<A> {
+    return (await this.mediateWithResult(action, testResults)).actor;
+  }
 }
 
 export interface IMediatorArgs<A extends Actor<I, T, O>,

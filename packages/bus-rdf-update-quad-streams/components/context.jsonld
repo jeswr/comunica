@@ -1,0 +1,12 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld",
+    {
+      "cbruqs": "npmd:@comunica/bus-rdf-update-quad-streams/",
+      "files-cbruqs": "cbruqs:^1.0.0/",
+
+      "BusRdfUpdateQuadStreams": "cbruqs:Bus/RdfUpdateQuadStreams",
+      "ActorRdfUpdateQuadStreams": "cbruqs:Actor/RdfUpdateQuadStreams"
+    }
+  ]
+}
