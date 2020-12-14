@@ -16,6 +16,9 @@
       "mediatorSparqlSerializeMediaTypeFormatCombiner": "cais:mediatorSparqlSerializeMediaTypeFormatCombiner",
       "mediatorContextPreprocess": "cais:mediatorContextPreprocess",
       "mediatorHttpInvalidate": "cais:mediatorHttpInvalidate",
+      "mediatorRdfUpdateQuads": "cais:mediatorRdfUpdateQuads",
+      "mediatorRdfDereference": "cais:mediatorRdfDereference",
+      "mediatorRdfWrite": "cais:mediatorRdfWrite",
 
       "contextShortcutKey": "cais:contextKeyShortcut/shortcut",
       "contextShortcutValue": "cais:contextKeyShortcut/expanded"

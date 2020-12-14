@@ -1,0 +1,6 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-write/^1.0.0/components/context.jsonld",
+  "@id": "cbrw:Bus/RdfWrite",
+  "@type": "cc:Bus",
+  "comment": "A comunica bus for rdf-write events."
+}

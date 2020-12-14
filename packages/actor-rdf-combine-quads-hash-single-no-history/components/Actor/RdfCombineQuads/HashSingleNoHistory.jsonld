@@ -1,0 +1,21 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-combine-quads-hash-single-no-history/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-combine-quads/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-combine-quads-hash-single-no-history",
+  "components": [
+    {
+      "@id": "carcqhsnh:Actor/RdfCombineQuads/HashSingleNoHistory",
+      "@type": "Class",
+      "extends": "cbrcq:Actor/RdfCombineQuads",
+      "requireElement": "ActorRdfCombineQuadsHashSingleNoHistory",
+      "comment": "A comunica Hash Single No History RDF Combine Quads Actor.",
+      "constructorArguments": [
+        {
+          "extends": "cbrcq:Actor/RdfCombineQuads/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}

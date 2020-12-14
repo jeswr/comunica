@@ -1,0 +1,21 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-combine-quads-hash/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-combine-quads/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-combine-quads-hash",
+  "components": [
+    {
+      "@id": "carcqh:Actor/RdfCombineQuads/Hash",
+      "@type": "Class",
+      "extends": "cbrcq:Actor/RdfCombineQuads",
+      "requireElement": "ActorRdfCombineQuadsHash",
+      "comment": "A comunica Hash RDF Combine Quads Actor.",
+      "constructorArguments": [
+        {
+          "extends": "cbrcq:Actor/RdfCombineQuads/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}

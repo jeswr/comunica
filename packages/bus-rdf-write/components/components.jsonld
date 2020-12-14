@@ -1,0 +1,10 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-write/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/bus-rdf-write",
+  "@type": "Module",
+  "requireName": "@comunica/bus-rdf-write",
+  "import": [
+    "files-cbrw:components/Bus/RdfWrite.jsonld",
+    "files-cbrw:components/Actor/RdfWrite.jsonld"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld",
+    {
+      "npmd": "https://linkedsoftwaredependencies.org/bundles/npm/",
+      "caruqse": "npmd:@comunica/actor-rdf-update-quads-sparql-endpoint/",
+      "files-caruqse": "caruqse:^1.0.0/",
+
+      "ActorRdfUpdateQuadsSparqlEndpoint": "caruqse:Actor/RdfUpdateQuads/SparqlEndpoint",
+      "mediatorHttp": "caruqse:mediatorHttp"
+    }
+  ]
+}

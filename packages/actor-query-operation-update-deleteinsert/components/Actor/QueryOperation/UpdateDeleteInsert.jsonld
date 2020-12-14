@@ -11,9 +11,23 @@
       "extends": "cbqo:Actor/QueryOperationTypedMediated",
       "requireElement": "ActorQueryOperationUpdateDeleteInsert",
       "comment": "A comunica Update DeleteInsert Query Operation Actor.",
+      "parameters": [
+        {
+          "@id": "caqoudi:mediatorRdfUpdateQuads",
+          "comment": "The RDF Update Quads mediator",
+          "required": true,
+          "unique": true
+        }
+      ],
       "constructorArguments": [
         {
-          "extends": "cbqo:Actor/QueryOperationTypedMediated/constructorArgumentsObject"
+          "extends": "cbqo:Actor/QueryOperationTypedMediated/constructorArgumentsObject",
+          "fields": [
+            {
+              "keyRaw": "mediatorRdfUpdateQuads",
+              "value": "caqoudi:mediatorRdfUpdateQuads"
+            }
+          ]
         }
       ]
     }

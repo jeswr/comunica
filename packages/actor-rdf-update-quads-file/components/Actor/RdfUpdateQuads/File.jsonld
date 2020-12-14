@@ -1,0 +1,57 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-update-quads-file/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-update-quads/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-update-quads-file",
+  "components": [
+    {
+      "@id": "caruqf:Actor/RdfUpdateQuads/File",
+      "@type": "Class",
+      "extends": "cbruq:Actor/RdfUpdateQuads",
+      "requireElement": "ActorRdfUpdateQuadsFile",
+      "comment": "A comunica File RDF Update Quads Actor.",
+      "parameters": [
+        {
+          "@id": "caruqf:mediatorRdfDereference",
+          "comment": "Mediator RDF Dereference",
+          "required": true,
+          "unique": true
+        },
+        {
+          "@id": "caruqf:mediatorRdfWrite",
+          "comment": "Mediator RDF Write",
+          "required": true,
+          "unique": true
+        },
+        {
+          "@id": "caruqf:mediatorCombineQuads",
+          "comment": "Mediator Combine Quad Streams",
+          "required": true,
+          "unique": true
+        }
+      ],
+      "constructorArguments": [
+        {
+          "extends": "cbruq:Actor/RdfUpdateQuads/constructorArgumentsObject",
+          "fields": [
+            {
+              "keyRaw": "mediatorRdfDereference",
+              "value": "caruqf:mediatorRdfDereference"
+            },
+            
+            {
+              "keyRaw": "mediatorCombineQuads",
+              "value": "caruqf:mediatorCombineQuads"
+            },
+            
+            {
+              "keyRaw": "mediatorRdfWrite",
+              "value": "caruqf:mediatorRdfWrite"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

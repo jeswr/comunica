@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-write-file/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-rdf-write-file",
+  "@type": "Module",
+  "requireName": "@comunica/actor-rdf-write-file",
+  "import": [
+    "files-carwf:components/Actor/RdfWrite/File.jsonld"
+  ]
+}

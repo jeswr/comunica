@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-update-quad-stream/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/bus-rdf-update-quad-stream",
+  "components": [
+    {
+      "@id": "cbruqs:Actor/RdfUpdateQuadStream",
+      "@type": "AbstractClass",
+      "extends": "cc:Actor",
+      "requireElement": "ActorRdfUpdateQuadStream",
+      "comment": "A comunica actor for rdf-update-quad-stream events.",
+      "parameters": [
+        {
+          "@id": "cc:Actor/bus",
+          "defaultScoped": {
+            "defaultScope": "cbruqs:Actor/RdfUpdateQuadStream",
+            "defaultScopedValue": { "@id": "cbruqs:Bus/RdfUpdateQuadStream" }
+          }
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "cbruqs:Actor/RdfUpdateQuadStream/constructorArgumentsObject",
+          "@type": "https://linkedsoftwaredependencies.org/vocabularies/object-oriented#Object",
+          "extends": "cc:Actor/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}

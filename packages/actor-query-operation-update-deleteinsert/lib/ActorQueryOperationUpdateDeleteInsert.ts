@@ -3,7 +3,8 @@ import {
   ActorQueryOperation, ActorQueryOperationTypedMediated, Bindings, BindingsStream, IActorQueryOperationOutput,
   IActorQueryOperationTypedMediatedArgs,
 } from '@comunica/bus-query-operation';
-import { ActionContext, IActorTest } from '@comunica/core';
+import { IActionRdfUpdateQuads, IActorRdfUpdateQuadsOutput } from '@comunica/bus-rdf-update-quads';
+import { ActionContext, Actor, IActorTest, Mediator } from '@comunica/core';
 import { AsyncIterator, SingletonIterator } from 'asynciterator';
 import * as RDF from 'rdf-js';
 import { Algebra } from 'sparqlalgebrajs';
@@ -12,6 +13,9 @@ import { Algebra } from 'sparqlalgebrajs';
  * A comunica Update DeleteInsert Query Operation Actor.
  */
 export class ActorQueryOperationUpdateDeleteInsert extends ActorQueryOperationTypedMediated<Algebra.DeleteInsert> {
+  public readonly mediatorRdfUpdateQuads: Mediator<Actor<IActionRdfUpdateQuads, IActorTest, IActorRdfUpdateQuadsOutput>,
+  IActionRdfUpdateQuads, IActorTest, IActorRdfUpdateQuadsOutput>;
+  
   public constructor(args: IActorQueryOperationTypedMediatedArgs) {
     super(args, 'deleteinsert');
   }
@@ -37,13 +41,26 @@ export class ActorQueryOperationUpdateDeleteInsert extends ActorQueryOperationTy
     if (pattern.delete) {
       quadStreamDelete = new BindingsToQuadsIterator(pattern.delete, whereBindings.clone());
     }
-
+    
+    // quadStreamInsert?.on('data', quad => {
+    //   console.log("Quad found in on")
+    //   console.log(quad)
+    // })
+    console.log("HO")
+    // console.log("quadStreamInsert is ", quadStreamInsert)
+    // const q = quadStreamInsert?.read();
+    // console.log(q)
     // Evaluate the required modifications
-    const { quadStreamInserted, quadStreamDeleted } = this.mediatorUpdateQuads.mediate({
+    const { quadStreamInserted, quadStreamDeleted } = await this.mediatorRdfUpdateQuads.mediate({
       quadStreamInsert,
       quadStreamDelete,
       context,
     });
+    console.log("HI")
+    quadStreamInserted?.on('data', quad => {
+      console.log(quad)
+    })
+    // console.log(quadStreamInserted);
 
     return {
       type: 'update',

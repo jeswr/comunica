@@ -1,0 +1,36 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-init-sparql/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/runner/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-query-operation/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-query-operation-update-compositeupdate/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-query-operation-update-deleteinsert/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-join-quads/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/mediator-race/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "urn:comunica:my",
+  "actors": [
+    {
+      "@id": "config-sets:sparql-queryoperators-update.json#myCompositeUpdateQueryOperator",
+      "@type": "ActorQueryOperationUpdateCompositeUpdate",
+      "cbqo:mediatorQueryOperation": { "@id": "config-sets:sparql-queryoperators.json#mediatorQueryOperation" },
+      "caqouc:mediatorRdfJoinQuads": { 
+        "@id": "config-sets:quads-join.json#mediatorRdfJoinQuads",
+        "cc:Mediator/bus": { "@id": "cbrjq:Bus/RdfJoinQuads" }
+      }
+    },
+    {
+      "@id": "config-sets:sparql-queryoperators-update.json#myDeleteInsertQueryOperator",
+      "@type": "ActorQueryOperationUpdateDeleteInsert",
+      "cbqo:mediatorQueryOperation": { "@id": "config-sets:sparql-queryoperators.json#mediatorQueryOperation" },
+      "caqoudi:mediatorRdfUpdateQuads": { 
+        "@type": "MediatorRace",
+        "cc:Mediator/bus": { "@id": "cbruq:Bus/RdfUpdateQuads" },
+        "@id": "config-sets:quads-update.json#mediatorRdfUpdateQuads" 
+      }
+    }
+  ]
+}

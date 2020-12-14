@@ -1,0 +1,27 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-init-sparql/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/runner/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-write/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-write-file/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-serialize/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/mediator-number/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/mediator-race/^1.0.0/components/context.jsonld"
+  ],
+
+  "@id": "urn:comunica:my",
+  "actors": [
+    {
+      "@id": "config-sets:rdf-write.json#myRdfWriteFile",
+      "@type": "ActorRdfWriteFile",
+      "carwf:mediatorRdfSerialize": {
+        "@id": "config-sets:rdf-serializers.json#mediatorRdfSerialize",
+        "@type": "MediatorRace",
+        "cc:Mediator/bus": { "@id": "cbrs:Bus/RdfSerialize" }
+      }
+    }
+  ]
+}

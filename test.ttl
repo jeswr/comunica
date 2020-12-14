@@ -1,0 +1,13 @@
+<http://p1> <http://p2> <http://p3> .
+<http://example.org/john> <http://example.org/funkyLabeller> "Funky label" .
+<http://example.org/john> <http://example.org/funkyLabeller> "Funky labels" .
+<http://example.org/john> <http://example.org/funkyLabeller> "Funky labelling" .
+<http://example.org/john> <http://example.org/funkyLabeller> <http://p3> .
+<http://example.org/john> <http://p2> <http://p3> .
+<http://p2> <http://p2> <http://p3> .
+<http://example.org/funkyLabeller> <http://example.org/funkyLabeller> <http://p3> .
+<http://example.org/funkyLabeller> <http://example.org/funkyLabeller> "Funky label" .
+<http://example.org/funkyLabeller> <http://example.org/funkyLabeller> "Funky labels" .
+<http://example.org/funkyLabeller> <http://example.org/funkyLabeller> "Funky labelling" .
+<http://p3> <http://p3> <http://p3> .
+<http://example.org/james> <http://example.org/funkyLabel> "Funky labelling2" .

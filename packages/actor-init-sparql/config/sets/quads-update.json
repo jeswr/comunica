@@ -1,0 +1,49 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-init-sparql/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/runner/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-update-quads/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-update-quads-sparql-endpoint/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-update-quads-file/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-combine-quads/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-dereference/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-write/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/mediator-race/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/mediator-number/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "urn:comunica:my",
+  "actors": [
+    {
+      "@id": "config-sets:quads-update.json#myRdfUpdateQuadsSparqlEndpoint",
+      "@type": "ActorRdfUpdateQuadsSparqlEndpoint",
+      "caruqse:mediatorHttp": {
+        "@id": "config-sets:http.json#mediatorHttp"
+      }
+    },
+    {
+      "@id": "config-sets:quads-update.json#myRdfUpdateQuadsFile",
+      "@type": "ActorRdfUpdateQuadsFile",
+      "caruqf:mediatorRdfDereference": {
+        "@id": "config-sets:rdf-dereference-file.json#mediatorRdfDereference",
+        "@type": "MediatorRace",
+        "cc:Mediator/bus": { "@id": "cbrd:Bus/RdfDereference" }
+      },
+      "caruqf:mediatorCombineQuads": {
+        "@id": "config-sets:quads-combine.json#mediatorRdfCombineQuads",
+        "@type": "MediatorRace",
+        "cc:Mediator/bus": { "@id": "cbrcq:Bus/RdfCombineQuads" }
+      },
+      "caruqf:mediatorRdfWrite": {
+        "@id": "config-sets:rdf-write.json#mediatorRdfWrite",
+        "@type": "MediatorRace",
+        "cc:Mediator/bus": { "@id": "cbrw:Bus/RdfWrite" }
+      },
+      "caruqf:mediatorHttp": {
+        "@id": "config-sets:http.json#mediatorHttp"
+      }
+    }
+  ]
+}

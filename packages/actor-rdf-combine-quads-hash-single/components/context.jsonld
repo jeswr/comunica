@@ -1,0 +1,12 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld",
+    {
+      "npmd": "https://linkedsoftwaredependencies.org/bundles/npm/",
+      "carcqhs": "npmd:@comunica/actor-rdf-combine-quads-hash-single/",
+      "files-carcqhs": "carcqhs:^1.0.0/",
+
+      "ActorRdfCombineQuadsHashSingle": "carcqhs:Actor/RdfCombineQuads/HashSingle"
+    }
+  ]
+}

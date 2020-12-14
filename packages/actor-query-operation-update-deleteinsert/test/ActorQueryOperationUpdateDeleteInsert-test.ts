@@ -62,7 +62,7 @@ describe('ActorQueryOperationUpdateDeleteInsert', () => {
 
     it('should run', () => {
       const op = { operation: { type: 'deleteinsert' } };
-      return expect(actor.run(op)).resolves.toMatchObject({ todo: true }); // TODO
+      return expect(actor.run(op)).resolves.toMatchObject({ type: 'update' });
     });
   });
 });

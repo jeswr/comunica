@@ -34,7 +34,7 @@ export class MediatorCombineUnion<A extends Actor<I, T, O>, I extends IAction, T
     return this.combiner(results);
   }
 
-  protected mediateWith(): Promise<A> {
+  protected mediateWithResult(): Promise<IActorReply<A, I, T, O>> {
     throw new Error('Method not supported.');
   }
 

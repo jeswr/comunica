@@ -1,0 +1,35 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-join-quads-delegate-combine/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-join-quads/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-join-quads-delegate-combine",
+  "components": [
+    {
+      "@id": "carjqdc:Actor/RdfJoinQuads/DelegateCombine",
+      "@type": "Class",
+      "extends": "cbrjq:Actor/RdfJoinQuads",
+      "requireElement": "ActorRdfJoinQuadsDelegateCombine",
+      "comment": "A comunica Delegate Combine RDF Join Quads Actor.",
+      "parameters": [
+        {
+          "@id": "carjqdc:mediatorRdfCombineQuads",
+          "comment": "The RDF combine Quads actor",
+          "required": true,
+          "unique": true
+        }
+      ],
+      "constructorArguments": [
+        {
+          "extends": "cbrjq:Actor/RdfJoinQuads/constructorArgumentsObject",
+          "fields": [
+            {
+            "keyRaw": "carjqdc:mediatorRdfCombineQuads",
+            "value": "mediatorRdfCombineQuads"
+          }
+        ]
+        }
+      ]
+    }
+  ]
+}

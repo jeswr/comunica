@@ -28,6 +28,7 @@ export class ActorRdfDereferenceFile extends ActorRdfDereferenceMediaMappings {
   }
 
   public async test(action: IActionRdfDereference): Promise<IActorTest> {
+    console.log("dereference testing")
     try {
       await promisify(fs.access)(
         action.url.startsWith('file://') ? new URL(action.url) : action.url, fs.constants.F_OK,
@@ -41,6 +42,7 @@ export class ActorRdfDereferenceFile extends ActorRdfDereferenceMediaMappings {
   }
 
   public async run(action: IActionRdfDereference): Promise<IActorRdfDereferenceOutput> {
+    console.log("dereference running")
     let { mediaType } = action;
 
     // Deduce media type from file extension if possible

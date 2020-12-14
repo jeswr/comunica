@@ -9,7 +9,12 @@
     "files-cais:config/sets/http.json",
     "files-cais:config/sets/http-memento.json",
     "files-cais:config/sets/join.json",
+    "files-cais:config/sets/quads-combine.json",
+    "files-cais:config/sets/quads-join.json",
+    "files-cais:config/sets/quads-update.json",
+    "files-cais:config/sets/rdf-write.json",
     "files-cais:config/sets/rdf-dereference.json",
+    "files-cais:config/sets/rdf-dereference-file.json",
     "files-cais:config/sets/rdf-parsers.json",
     "files-cais:config/sets/rdf-serializers.json",
     "files-cais:config/sets/resolve-federated.json",
@@ -22,6 +27,7 @@
     "files-cais:config/sets/sparql-parsers.json",
     "files-cais:config/sets/sparql-queryoperators.json",
     "files-cais:config/sets/sparql-queryoperators-path.json",
+    "files-cais:config/sets/sparql-queryoperators-update.json",
     "files-cais:config/sets/sparql-serializers.json"
   ]
 }

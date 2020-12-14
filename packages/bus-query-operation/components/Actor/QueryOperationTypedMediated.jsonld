@@ -23,10 +23,10 @@
         {
           "@id": "cbqo:Actor/QueryOperationTypedMediated/constructorArgumentsObject",
           "extends": "cbqo:Actor/QueryOperation/constructorArgumentsObject",
-          "fields": {
+          "fields": [{
             "keyRaw": "mediatorQueryOperation",
             "value": "cbqo:mediatorQueryOperation"
-          }
+          }]
         }
       ]
     }

@@ -1,6 +1,8 @@
-import { ActorQueryOperationTypedMediated, IActorQueryOperationOutput,
-  IActorQueryOperationTypedMediatedArgs } from '@comunica/bus-query-operation';
-import { ActionContext, IActorTest } from '@comunica/core';
+import { ActorQueryOperation, ActorQueryOperationTypedMediated, IActorQueryOperationOutput,
+  IActorQueryOperationTypedMediatedArgs, 
+  QuadStream} from '@comunica/bus-query-operation';
+import { IActionRdfJoinQuads, IActorRdfJoinQuadsOutput } from '@comunica/bus-rdf-join-quads';
+import { ActionContext, Actor, IActorTest, Mediator } from '@comunica/core';
 import { Algebra } from 'sparqlalgebrajs';
 
 /**
@@ -8,7 +10,10 @@ import { Algebra } from 'sparqlalgebrajs';
  */
 export class ActorQueryOperationUpdateCompositeUpdate
   extends ActorQueryOperationTypedMediated<Algebra.CompositeUpdate> {
-  public constructor(args: IActorQueryOperationTypedMediatedArgs) {
+    public readonly mediatorJoinQuads: Mediator<Actor<IActionRdfJoinQuads, IActorTest, IActorRdfJoinQuadsOutput>,
+    IActionRdfJoinQuads, IActorTest, IActorRdfJoinQuadsOutput>;
+  
+    public constructor(args: IActorQueryOperationTypedMediatedArgs) {
     super(args, 'compositeupdate');
   }
 
@@ -18,13 +23,27 @@ export class ActorQueryOperationUpdateCompositeUpdate
 
   public async runOperation(pattern: Algebra.CompositeUpdate, context: ActionContext):
   Promise<IActorQueryOperationOutput> {
+    console.log("running composite update");
     // TODO: create transaction
     const updateResults = await Promise.all(pattern.updates
       .map(operation => this.mediatorQueryOperation.mediate({ operation, context })));
+    
+    const quadStreamsInserted: QuadStream[] = [];
+    const quadStreamsDeleted: QuadStream[] = [];
+    for (const update of updateResults) {
+      const { quadStreamInserted, quadStreamDeleted } = ActorQueryOperation.getSafeUpdate(update);
+      if (quadStreamInserted) {
+        quadStreamsInserted.push(quadStreamInserted);
+      }
+      if (quadStreamDeleted) {
+        quadStreamsDeleted.push(quadStreamDeleted);
+      }
+    }
+
     return {
       type: 'update',
-      quadStreamInserted, // TODO: join input streams
-      quadStreamDeleted, // TODO: join input streams
+      quadStreamInserted: (await this.mediatorJoinQuads.mediate({ quadStreams: quadStreamsInserted })).quads,
+      quadStreamDeleted: (await this.mediatorJoinQuads.mediate({ quadStreams: quadStreamsDeleted })).quads,
     };
   }
 }

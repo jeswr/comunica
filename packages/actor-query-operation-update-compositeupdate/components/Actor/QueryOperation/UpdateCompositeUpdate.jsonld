@@ -11,9 +11,23 @@
       "extends": "cbqo:Actor/QueryOperationTypedMediated",
       "requireElement": "ActorQueryOperationUpdateCompositeUpdate",
       "comment": "A comunica Update CompositeUpdate Query Operation Actor.",
+      "parameters": [
+        {
+          "@id": "caqouc:mediatorJoinQuads",
+          "comment": "The RDF Join Quads mediator",
+          "required": true,
+          "unique": true
+        }
+      ],
       "constructorArguments": [
         {
-          "extends": "cbqo:Actor/QueryOperationTypedMediated/constructorArgumentsObject"
+          "extends": "cbqo:Actor/QueryOperationTypedMediated/constructorArgumentsObject",
+          "fields": [
+            {
+            "keyRaw": "caqouc:mediatorJoinQuads",
+            "value": "mediatorJoinQuads"
+          }
+        ]
         }
       ]
     }

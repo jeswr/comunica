@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-join-quads/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/bus-rdf-join-quads",
+  "components": [
+    {
+      "@id": "cbrjq:Actor/RdfJoinQuads",
+      "@type": "AbstractClass",
+      "extends": "cc:Actor",
+      "requireElement": "ActorRdfJoinQuads",
+      "comment": "A comunica actor for rdf-join-quads events.",
+      "parameters": [
+        {
+          "@id": "cc:Actor/bus",
+          "defaultScoped": {
+            "defaultScope": "cbrjq:Actor/RdfJoinQuads",
+            "defaultScopedValue": { "@id": "cbrjq:Bus/RdfJoinQuads" }
+          }
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "cbrjq:Actor/RdfJoinQuads/constructorArgumentsObject",
+          "@type": "https://linkedsoftwaredependencies.org/vocabularies/object-oriented#Object",
+          "extends": "cc:Actor/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}

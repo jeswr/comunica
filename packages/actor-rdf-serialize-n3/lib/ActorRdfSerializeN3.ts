@@ -17,6 +17,7 @@ export class ActorRdfSerializeN3 extends ActorRdfSerializeFixedMediaTypes {
 
   public async runHandle(action: IActionRdfSerialize, mediaType: string, context: ActionContext):
   Promise<IActorRdfSerializeOutput> {
+    console.log("inside n3 runhandle")
     const data: NodeJS.ReadableStream = <any> new StreamWriter({ format: mediaType }).import(action.quadStream);
     return { data,
       triples: mediaType === 'text/turtle' ||

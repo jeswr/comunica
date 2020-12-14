@@ -1,0 +1,33 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-write-file/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-write/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-write-file",
+  "components": [
+    {
+      "@id": "carwf:Actor/RdfWrite/File",
+      "@type": "Class",
+      "extends": "cbrw:Actor/RdfWrite",
+      "requireElement": "ActorRdfWriteFile",
+      "comment": "A comunica File RDF Write Actor.",
+      "parameters": [
+        {
+          "@id": "carwf:mediatorRdfSerialize",
+          "comment": "The RDF serialization actor",
+          "required": true,
+          "unique": true
+        }
+      ],
+      "constructorArguments": [
+        {
+          "extends": "cbrw:Actor/RdfWrite/constructorArgumentsObject",
+          "fields": [{
+            "keyRaw": "mediatorRdfSerialize",
+            "value": "carwf:mediatorRdfSerialize"
+          }]
+        }
+      ]
+    }
+  ]
+}

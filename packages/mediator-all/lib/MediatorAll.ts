@@ -35,7 +35,7 @@ export class MediatorAll<A extends Actor<I, T, O>, I extends IAction, T extends 
     return outputs[0];
   }
 
-  protected async mediateWith(): Promise<A> {
+  protected async mediateWithResult(): Promise<IActorReply<A, I, T, O>> {
     throw new Error('Unsupported operation: MediatorAll#mediateWith');
   }
 }
