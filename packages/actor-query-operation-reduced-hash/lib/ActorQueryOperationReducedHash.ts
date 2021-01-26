@@ -1,7 +1,7 @@
 import type { IActorInitRdfDereferencePagedArgs } from '@comunica/actor-abstract-bindings-hash';
 import { AbstractBindingsHash, AbstractFilterHash } from '@comunica/actor-abstract-bindings-hash';
 import type { Bindings } from '@comunica/bus-query-operation';
-import LRU = require('lru-cache');
+import LRU from 'lru-cache';
 import type { Algebra } from 'sparqlalgebrajs';
 /**
  * A comunica Reduced Hash Query Operation Actor.

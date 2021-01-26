@@ -11,7 +11,7 @@ import { KEY_CONTEXT_BASEIRI } from '@comunica/bus-query-operation';
 
 import { ActionContext } from '@comunica/core';
 import { LoggerPretty } from '@comunica/logger-pretty';
-import minimist = require('minimist');
+import minimist from 'minimist';
 import type { IActorInitSparqlArgs } from './ActorInitSparql-browser';
 import {
   ActorInitSparql as ActorInitSparqlBrowser,

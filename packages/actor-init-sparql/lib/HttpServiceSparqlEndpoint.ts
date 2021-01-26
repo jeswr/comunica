@@ -8,7 +8,7 @@ import type { IActorQueryOperationOutput, IActorQueryOperationOutputQuads } from
 import { ActionContext } from '@comunica/core';
 
 import { ArrayIterator } from 'asynciterator';
-import minimist = require('minimist');
+import minimist from 'minimist';
 import type * as RDF from 'rdf-js';
 import { newEngineDynamic } from '..';
 import { ActorInitSparql } from './ActorInitSparql';

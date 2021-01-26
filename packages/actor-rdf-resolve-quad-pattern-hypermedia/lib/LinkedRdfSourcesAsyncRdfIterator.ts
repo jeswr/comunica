@@ -2,7 +2,7 @@ import type { ILink } from '@comunica/bus-rdf-resolve-hypermedia-links';
 import type { IQuadSource } from '@comunica/bus-rdf-resolve-quad-pattern';
 import type { AsyncIterator } from 'asynciterator';
 import { BufferedIterator } from 'asynciterator';
-import LRUCache = require('lru-cache');
+import LRUCache from 'lru-cache';
 import type * as RDF from 'rdf-js';
 
 /**
@@ -76,7 +76,7 @@ export abstract class LinkedRdfSourcesAsyncRdfIterator extends BufferedIterator<
    * @param link A source link.
    * @param handledDatasets A hash of dataset identifiers that have already been handled.
    */
-  protected abstract async getSource(link: ILink, handledDatasets: Record<string, boolean>): Promise<ISourceState>;
+  protected abstract getSource(link: ILink, handledDatasets: Record<string, boolean>): Promise<ISourceState>;
 
   /**
    * Resolve a source for the given URL.

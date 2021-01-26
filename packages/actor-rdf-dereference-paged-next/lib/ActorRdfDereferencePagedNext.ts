@@ -6,7 +6,7 @@ import { ActorRdfDereferencePaged } from '@comunica/bus-rdf-dereference-paged';
 import type { IActionRdfMetadata, IActorRdfMetadataOutput } from '@comunica/bus-rdf-metadata';
 import type { IActionRdfMetadataExtract, IActorRdfMetadataExtractOutput } from '@comunica/bus-rdf-metadata-extract';
 import type { Actor, IActorArgs, IActorTest, Mediator } from '@comunica/core';
-import * as LRUCache from 'lru-cache';
+import LRUCache from 'lru-cache';
 import { MediatedPagedAsyncRdfIterator } from './MediatedPagedAsyncRdfIterator';
 
 /**

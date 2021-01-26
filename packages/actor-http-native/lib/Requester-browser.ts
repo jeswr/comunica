@@ -76,6 +76,7 @@ export default class Requester {
         const resource = this.removeQuery(resHeaders.get('content-location') ?? settings.url);
         if (!this.negotiatedResources[resource]) {
           // Ensure the resource is not a timegate
+          // @ts-ignore
           const links = (resHeaders.get('link') && parseLink(<string> resHeaders.get('link'))) ?? undefined;
           const timegate = this.removeQuery(links && links.timegate && links.timegate.url);
           if (resource !== timegate) {

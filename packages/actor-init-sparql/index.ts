@@ -4,6 +4,8 @@ export {
   newEngine,
   evaluateQuery,
   bindingsStreamToGraphQl,
+} from './index-browser';
+export type {
   IQueryResultBindings,
   IQueryResultQuads,
   IQueryResultBoolean,

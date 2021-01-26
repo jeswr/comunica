@@ -6,7 +6,7 @@ import * as Path from 'path';
 import type { Stream } from 'stream';
 import { compileConfig } from 'componentsjs';
 import type { ParsedArgs } from 'minimist';
-import minimist = require('minimist');
+import minimist from 'minimist';
 
 const args: ParsedArgs = minimist(process.argv.slice(2));
 if (args._.length !== 1 || !args.o || args.h || args.help) {

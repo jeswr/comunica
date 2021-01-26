@@ -11,6 +11,7 @@ describe('Requester', () => {
       req.on('response', response => {
         expect(response).toMatchObject({ statusCode: 405 });
         expect(response.input).toMatchObject({ href: 'http://example.com/test' });
+        // @ts-ignore
         resolve();
       });
     });
@@ -25,6 +26,7 @@ describe('Requester', () => {
           response.headers = { accept: 'more' };
           expect(requester.convertRequestHeadersToFetchHeaders(response.headers))
             .toEqual(new Headers({ accept: 'more' }));
+          // @ts-ignore
           resolve();
         });
       });
@@ -37,6 +39,7 @@ describe('Requester', () => {
         req.on('response', response => {
           response.headers = {};
           expect(requester.convertRequestHeadersToFetchHeaders(response.headers)).toEqual(new Headers({}));
+          // @ts-ignore
           resolve();
         });
       });

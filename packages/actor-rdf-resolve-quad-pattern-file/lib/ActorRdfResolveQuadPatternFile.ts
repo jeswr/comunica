@@ -7,7 +7,7 @@ import {
   ActorRdfResolveQuadPatternSource,
 } from '@comunica/bus-rdf-resolve-quad-pattern';
 import type { ActionContext, Actor, IActorArgs, IActorTest, Mediator } from '@comunica/core';
-import * as LRUCache from 'lru-cache';
+import LRUCache from 'lru-cache';
 import { Store } from 'n3';
 import { N3StoreQuadSource } from './N3StoreQuadSource';
 

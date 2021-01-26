@@ -33,7 +33,7 @@ export class ActorQueryOperationPathAlt extends ActorAbstractPath {
     const bindingsStream = new UnionIterator(subOperations.map(op => op.bindingsStream), { autoStart: false });
     const variables = (<string[]> []).concat
       .apply([], subOperations.map(op => op.variables));
-
+    // @ts-ignore
     return { type: 'bindings', bindingsStream, variables: [ ...new Set(variables) ], canContainUndefs: false };
   }
 }

@@ -15,7 +15,7 @@ import {
   ActorRdfResolveQuadPatternSource, getDataSourceType,
 } from '@comunica/bus-rdf-resolve-quad-pattern';
 import type { ActionContext, Actor, IActorArgs, IActorTest, Mediator } from '@comunica/core';
-import LRUCache = require('lru-cache');
+import LRUCache from 'lru-cache';
 import type { Algebra } from 'sparqlalgebrajs';
 import { MediatedQuadSource } from './MediatedQuadSource';
 
