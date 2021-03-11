@@ -20,5 +20,8 @@
   "npmClient": "yarn",
   "npmClientArgs": [
     "--pure-lockfile"
-  ]
+  ],
+  "useGitVersion": true,
+  "version": "0.0.1",
+  "gitVersionPrefix": "v"
 }
