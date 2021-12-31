@@ -60,6 +60,7 @@
     "collectCoverage": true
   },
   "scripts": {
+    "test": "node \"../../node_modules/jest/bin/jest.js\" ${1}",
     "build": "node \"../../node_modules/typescript/bin/tsc\"",
     "validate": "npm ls"
   }

@@ -1,4 +1,5 @@
 import type { ActionContext, IActorTest } from '@comunica/core';
+import { empty } from 'asynciterator';
 import type { IActionRdfUpdateQuads, IActorRdfUpdateQuadsOutput } from './ActorRdfUpdateQuads';
 import { ActorRdfUpdateQuads } from './ActorRdfUpdateQuads';
 import type { IQuadDestination } from './IQuadDestination';
@@ -16,7 +17,13 @@ export abstract class ActorRdfUpdateQuadsDestination extends ActorRdfUpdateQuads
 
   public async run(action: IActionRdfUpdateQuads): Promise<IActorRdfUpdateQuadsOutput> {
     const destination = await this.getDestination(action.context);
-    return await this.getOutput(destination, action, action.context);
+    if (!action.quadStreamInsert) {
+      throw new Error('No quad stream to insert');
+    }
+    return { updateResult: destination.insert(empty()) }
+    
+    // console.log(destination)
+    return this.getOutput(destination, action, action.context);
   }
 
   /**
@@ -25,11 +32,11 @@ export abstract class ActorRdfUpdateQuadsDestination extends ActorRdfUpdateQuads
    * @param {IActionRdfUpdateQuads} action The action.
    * @param {ActionContext} context Optional context data.
    */
-  protected async getOutput(
+  protected getOutput(
     destination: IQuadDestination,
     action: IActionRdfUpdateQuads,
     context?: ActionContext,
-  ): Promise<IActorRdfUpdateQuadsOutput> {
+  ): IActorRdfUpdateQuadsOutput {
     const updateResult = Promise.all([
       action.quadStreamInsert ? destination.insert(action.quadStreamInsert) : Promise.resolve(),
       action.quadStreamDelete ? destination.delete(action.quadStreamDelete) : Promise.resolve(),

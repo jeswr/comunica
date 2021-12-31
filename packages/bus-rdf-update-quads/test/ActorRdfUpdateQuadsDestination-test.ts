@@ -1,6 +1,6 @@
 import { Bus, ActionContext } from '@comunica/core';
 import type * as RDF from '@rdfjs/types';
-import { ArrayIterator } from 'asynciterator';
+import { ArrayIterator, empty } from 'asynciterator';
 import { ActorRdfUpdateQuadsDestination, getDataDestinationType, getDataDestinationValue,
   getDataDestinationContext, isDataDestinationRawType } from '..';
 
@@ -64,6 +64,15 @@ describe('ActorRdfUpdateQuadsDestination', () => {
       return actor.run({
         quadStreamInsert: new ArrayIterator([]),
         quadStreamDelete: new ArrayIterator([]),
+      }).then(async(output: any) => {
+        await expect(output.updateResult).resolves.toBeUndefined();
+      });
+    });
+
+    it('should run with empty streams', () => {
+      return actor.run({
+        quadStreamInsert: empty(),
+        quadStreamDelete: empty(),
       }).then(async(output: any) => {
         await expect(output.updateResult).resolves.toBeUndefined();
       });

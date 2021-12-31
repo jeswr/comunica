@@ -1,6 +1,6 @@
 import { KeysRdfUpdateQuads } from '@comunica/context-entries';
 import { ActionContext } from '@comunica/core';
-import { ArrayIterator } from 'asynciterator';
+import { ArrayIterator, empty } from 'asynciterator';
 import { Headers } from 'cross-fetch';
 import { DataFactory } from 'rdf-data-factory';
 import { QuadDestinationSparql } from '../lib/QuadDestinationSparql';
@@ -33,6 +33,23 @@ describe('QuadDestinationSparql', () => {
   });
 
   describe('insert', () => {
+    it('should handle an empty insert', async() => {
+      await destination.insert(empty());
+
+      expect(mediatorHttp.mediate).toHaveBeenCalledWith({
+        context,
+        init: {
+          headers: { 'content-type': 'application/sparql-update' },
+          method: 'POST',
+          body: `INSERT DATA {
+}`,
+          // Should be an abort signal
+          signal: expect.anything(),
+        },
+        input: 'abc',
+      });
+    });
+    
     it('should handle a valid insert', async() => {
       await destination.insert(new ArrayIterator([
         DF.quad(DF.namedNode('ex:s1'), DF.namedNode('ex:p1'), DF.namedNode('ex:o1')),
